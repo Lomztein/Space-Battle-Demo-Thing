@@ -41,4 +41,9 @@ public class Weapon : MonoBehaviour, IWeapon
         }
         return false;
     }
+
+    public bool CanFire()
+    {
+        return _chambered;
+    }
 }
