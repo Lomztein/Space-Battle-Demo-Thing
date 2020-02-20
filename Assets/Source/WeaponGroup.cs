@@ -9,13 +9,19 @@ public class WeaponGroup : MonoBehaviour, IWeapon
     private IWeapon[] _weapons;
     private IFirePattern _firePattern;
 
+    public float Firerate => _weapons.First().Firerate;
+
+    public float Damage => _weapons.Sum(x => x.Damage);
+
+    public float Range => _weapons.Max(x => x.Range);
+
     public bool CanFire() => (_weapons.FirstOrDefault ()?.CanFire()).GetValueOrDefault ();
 
     public bool Fire()
     {
         if (CanFire ())
         {
-            _firePattern.Fire(_weapons.Length, x => _weapons[x].Fire());
+            _firePattern.Fire(_weapons.Length, _weapons.First ().Firerate, x => _weapons[x].Fire());
             return true;
         }
         return false;

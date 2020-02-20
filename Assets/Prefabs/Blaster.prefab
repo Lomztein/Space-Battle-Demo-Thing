@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 248338986038868300}
   m_LocalRotation: {x: -0.70710576, y: -0, z: -0, w: 0.70710784}
   m_LocalPosition: {x: 0, y: 0, z: -0.668}
-  m_LocalScale: {x: 0.30424, y: 1.5696958, z: 0.30424}
+  m_LocalScale: {x: 0.1551624, y: 1.1940126, z: 0.1551624}
   m_Children: []
   m_Father: {fileID: 1811954389249272477}
   m_RootOrder: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 2080982326737554576}
   Muzzle: {fileID: 3985242903409518200}
   Flash: {fileID: 1146828069683310872}
-  ReloadTime: 0.15
+  ReloadTime: 0.3
 --- !u!114 &2080982326737554576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,7 +237,7 @@ MonoBehaviour:
   Amount: 1
   Deviation: 0.5
   Speed: 1000
-  Damage: 10
+  Damage: 5
 --- !u!1001 &3174706515229505101
 PrefabInstance:
   m_ObjectHideFlags: 0

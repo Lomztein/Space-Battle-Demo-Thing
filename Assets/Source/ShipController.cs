@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipController : MonoBehaviour, IControllable
+public class ShipController : MonoBehaviour, IControllable, IThruster
 {
     public GameObject PrimaryWeapon;
     public IWeapon _primaryWeapon;
@@ -12,10 +12,27 @@ public class ShipController : MonoBehaviour, IControllable
 
     public float MaxSpeed;
     public float AccelerationRate;
-    private float _speed;
+    public float Speed { get; private set; }
 
-    public float TurnRate;
-    public float RollRate;
+    public float StrafeMaxSpeed;
+    public float StrafeAccelerationRate;
+    public float StrafeSpeed { get; private set; }
+
+    public float TargetPitch { get; private set; }
+    public float TargetYaw { get; private set; }
+    public float TargetRoll { get; private set; }
+
+    public float CurrentPitch { get; private set; }
+    public float CurrentYaw { get; private set; }
+    public float CurrentRoll { get; private set; }
+
+    public float PitchLerpSpeed;
+    public float YawLerpSpeed;
+    public float RollLerpSpeed;
+
+    public float PitchSpeed;
+    public float YawSpeed;
+    public float RollSpeed;
 
     public void Start ()
     {
@@ -25,22 +42,13 @@ public class ShipController : MonoBehaviour, IControllable
 
     public void Forward(float amount, float deltaTime)
     {
-        if (_speed > MaxSpeed)
-        {
-            _speed = MaxSpeed;
-        }else if (_speed < -MaxSpeed)
-        {
-            _speed = -MaxSpeed;
-        }
-        else
-        {
-            _speed += AccelerationRate * amount * deltaTime;
-        }
+        Speed += AccelerationRate * amount * deltaTime;
+        Speed = Mathf.Clamp(Speed, 0f, MaxSpeed);
     }
 
     public void Pitch(float amount, float deltaTime)
     {
-        transform.Rotate(new Vector3(amount * TurnRate * deltaTime, 0f));
+        TargetPitch = Mathf.Clamp (amount, -1, 1);
     }
 
     public void Primary()
@@ -53,7 +61,13 @@ public class ShipController : MonoBehaviour, IControllable
 
     public void Roll(float amount, float deltaTime)
     {
-        transform.Rotate(new Vector3(0f, amount * TurnRate * deltaTime));
+        TargetRoll = Mathf.Clamp(amount, -1, 1);
+    }
+
+    private float AddClamp (float value, float amount)
+    {
+        value += amount;
+        return Mathf.Clamp(value, -1, 1);
     }
 
     public void Secondary()
@@ -66,15 +80,57 @@ public class ShipController : MonoBehaviour, IControllable
 
     public void Strafe(float amount, float deltaTime)
     {
+        StrafeSpeed += StrafeAccelerationRate * amount * deltaTime;
+        StrafeSpeed = Mathf.Clamp(StrafeSpeed, -StrafeMaxSpeed, StrafeMaxSpeed);
     }
 
     public void Yaw(float amount, float deltaTime)
     {
-        transform.Rotate(new Vector3(0f, 0f, amount * TurnRate * deltaTime));
+        TargetYaw = Mathf.Clamp(amount, -1f, 1f);
     }
 
     private void FixedUpdate ()
     {
-        transform.Translate(0f, 0f, _speed * Time.fixedDeltaTime);
+        ApplyMovement(Time.fixedDeltaTime);
+    }
+
+    private void ApplyMovement (float deltaTime)
+    {
+        LerpMovement(deltaTime);
+        RotateMovement(deltaTime);
+        TranslateMovement(deltaTime);
+    }
+
+    private void LerpMovement (float deltaTime)
+    {
+        CurrentPitch = Mathf.Lerp(CurrentPitch, TargetPitch, PitchLerpSpeed * deltaTime);
+        CurrentYaw = Mathf.Lerp(CurrentYaw, TargetYaw, YawLerpSpeed * deltaTime);
+        CurrentRoll = Mathf.Lerp(CurrentRoll, TargetRoll, RollLerpSpeed * deltaTime);
+    }
+
+    private void RotateMovement (float deltaTime)
+    {
+        Vector3 rotation = new Vector3(
+            CurrentPitch * PitchSpeed,
+            CurrentYaw * YawSpeed,
+            CurrentRoll * RollSpeed
+            );
+
+        transform.Rotate(rotation * deltaTime);
+    }
+
+    private void TranslateMovement (float deltaTime)
+    {
+        transform.position += transform.forward * Speed * deltaTime;
+    }
+
+    public float GetThrust()
+    {
+        return Speed;
+    }
+
+    public float GetThrustFactor()
+    {
+        return Mathf.Abs (Speed / MaxSpeed);
     }
 }

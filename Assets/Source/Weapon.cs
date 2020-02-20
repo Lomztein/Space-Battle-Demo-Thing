@@ -12,6 +12,12 @@ public class Weapon : MonoBehaviour, IWeapon
 
     private bool _chambered = true;
 
+    public float Firerate => ReloadTime;
+
+    public float Damage => ProjectilePrefab.Damage;
+
+    public float Range => 1000;
+
     public void Chamber() => _chambered = true;
 
     private void Start ()

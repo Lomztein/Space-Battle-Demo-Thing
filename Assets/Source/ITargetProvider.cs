@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ITargetProvider
 {
-    Transform GetTarget();
+    Transform GetTarget(Vector3 center, Vector3 direction);
 }

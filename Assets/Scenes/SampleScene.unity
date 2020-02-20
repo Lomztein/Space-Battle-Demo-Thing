@@ -152,11 +152,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 9138730550492410083, guid: 60c36aca276744e4988c52dcabbba2a5, type: 3}
   FactionName: Capitalists
-  StartSpawn: 25
+  StartSpawn: 50
   SpawnRadius: 100
-  MaxSpawnFreqeuncy: 9000000
-  MinSpawnFreqeuncy: 9000000
-  MemberLimit: 100
+  MaxSpawnFreqeuncy: 0.1
+  MinSpawnFreqeuncy: 1
+  MemberLimit: 50
 --- !u!4 &417904466
 Transform:
   m_ObjectHideFlags: 0
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 514817841}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffdda9aeac7a75740804aed74d75950b, type: 3}
   m_Name: 
@@ -443,10 +443,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  PositionOffset: {x: 0, y: 5, z: -15}
-  LookOffset: {x: 0, y: 5, z: 0}
-  RotSpeed: 20
-  MoveSpeed: 20
+  PositionOffset: {x: 0, y: 3, z: -10}
+  LookOffset: {x: 0, y: 3, z: 0}
+  RotSpeed: 5000
+  MoveSpeed: 5000
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,11 +555,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 9138730550492410083, guid: 60c36aca276744e4988c52dcabbba2a5, type: 3}
   FactionName: Gayliens
-  StartSpawn: 25
+  StartSpawn: 50
   SpawnRadius: 100
-  MaxSpawnFreqeuncy: 9000000
-  MinSpawnFreqeuncy: 9000000
-  MemberLimit: 100
+  MaxSpawnFreqeuncy: 0.1
+  MinSpawnFreqeuncy: 1
+  MemberLimit: 50
 --- !u!4 &965565413
 Transform:
   m_ObjectHideFlags: 0
@@ -697,11 +697,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 9138730550492410083, guid: 60c36aca276744e4988c52dcabbba2a5, type: 3}
   FactionName: Commies
-  StartSpawn: 25
+  StartSpawn: 50
   SpawnRadius: 100
-  MaxSpawnFreqeuncy: 9000000
-  MinSpawnFreqeuncy: 9000000
-  MemberLimit: 100
+  MaxSpawnFreqeuncy: 0.1
+  MinSpawnFreqeuncy: 1
+  MemberLimit: 50
 --- !u!4 &1175890922
 Transform:
   m_ObjectHideFlags: 0
@@ -747,11 +747,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 9138730550492410083, guid: 60c36aca276744e4988c52dcabbba2a5, type: 3}
   FactionName: Hippies
-  StartSpawn: 25
+  StartSpawn: 50
   SpawnRadius: 100
-  MaxSpawnFreqeuncy: 9000000
-  MinSpawnFreqeuncy: 9000000
-  MemberLimit: 100
+  MaxSpawnFreqeuncy: 0.1
+  MinSpawnFreqeuncy: 1
+  MemberLimit: 50
 --- !u!4 &1391807557
 Transform:
   m_ObjectHideFlags: 0

@@ -107,6 +107,11 @@ PrefabInstance:
       propertyPath: RollRate
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 6505191785062392503, guid: e550934ee2f360e40976993bf9a2b496,
+        type: 3}
+      propertyPath: InputSize
+      value: 0.000001
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6505191785062392496, guid: e550934ee2f360e40976993bf9a2b496, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e550934ee2f360e40976993bf9a2b496, type: 3}

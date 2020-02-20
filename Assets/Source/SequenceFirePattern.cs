@@ -5,19 +5,22 @@ using UnityEngine;
 
 public class SequenceFirePattern : MonoBehaviour, IFirePattern
 {
-    public float SequenceTime;
+    public float Fraction;
 
-    public void Fire(int muzzles, Action<int> callback)
+    public void Fire(int muzzles, float firerate, Func<int, bool> callback)
     {
-        StartCoroutine(SequenceFire(muzzles, callback));
+        StartCoroutine(SequenceFire(muzzles, firerate, callback));
     }
 
-    private IEnumerator SequenceFire (int muzzles, Action<int> callback)
+    private IEnumerator SequenceFire (int muzzles, float firerate, Func<int, bool> callback)
     {
         for (int i = 0; i < muzzles; i++)
         {
-            callback(i);
-            yield return new WaitForSeconds(SequenceTime);
+            while (!callback (i))
+            {
+                yield return new WaitForFixedUpdate();
+            }
+            yield return new WaitForSeconds(firerate * Fraction);
         }
     }
 }

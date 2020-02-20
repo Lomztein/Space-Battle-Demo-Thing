@@ -10,6 +10,7 @@ public class PlayerControllerInput : MonoBehaviour
     void Start()
     {
         _controllable = GetComponent<IControllable>();
+        LockMouse();
     }
 
     // Update is called once per frame
@@ -29,5 +30,22 @@ public class PlayerControllerInput : MonoBehaviour
         {
             _controllable.Secondary();
         }
+
+        if (Input.GetButtonDown ("Cancel"))
+        {
+            FreeMouse();
+        }
+    }
+
+    void LockMouse ()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    void FreeMouse ()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
