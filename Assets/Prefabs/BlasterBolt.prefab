@@ -153,7 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThisFaction: {fileID: 3119307770825558283}
-  HitParticle: {fileID: 0}
+  HitParticle: {fileID: 1780366181532854711, guid: 1a386d157f27e684cb7582d7723bc2a6,
+    type: 3}
+  HitParticleLife: 0.5
   Direction: {x: 0, y: 0, z: 0}
   Speed: 0
   Damage: 0

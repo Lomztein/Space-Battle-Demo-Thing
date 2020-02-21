@@ -5,7 +5,9 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public FactionObject ThisFaction;
+
     public GameObject HitParticle;
+    public float HitParticleLife;
 
     public Vector3 Direction;
     public float Speed;
@@ -35,6 +37,7 @@ public class Projectile : MonoBehaviour
                 if (HitParticle)
                 {
                     GameObject particle = Instantiate(HitParticle, hit.point, Quaternion.LookRotation(hit.normal, transform.up));
+                    Destroy(particle, HitParticleLife);
                 }
                 Destroy(gameObject);
             }

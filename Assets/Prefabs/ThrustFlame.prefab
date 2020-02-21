@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Thruster: {fileID: 0}
   SizeMultilplier: 5
-  RandomVariance: 0.3
+  RandomVariance: 0.25
 --- !u!1001 &3857506796527679310
 PrefabInstance:
   m_ObjectHideFlags: 0

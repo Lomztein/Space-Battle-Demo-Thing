@@ -237,7 +237,7 @@ MonoBehaviour:
   Amount: 1
   Deviation: 0.5
   Speed: 1000
-  Damage: 5
+  Damage: 10
 --- !u!1001 &3174706515229505101
 PrefabInstance:
   m_ObjectHideFlags: 0

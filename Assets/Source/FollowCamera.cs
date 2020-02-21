@@ -1,22 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowCamera : MonoBehaviour
+public class FollowCamera : MonoBehaviour, ICameraController
 {
-    public Transform Target;
+    public Transform Target { get; private set; }
     public Vector3 PositionOffset;
     public Vector3 LookOffset;
 
     public float RotSpeed;
     public float MoveSpeed;
 
+    public event Action<Transform> OnTargetSwitch;
+
     void FixedUpdate()
     {
         if (Target == null)
         {
             var ships = GameObject.FindGameObjectsWithTag("Ship");
-            Target = ships[Random.Range(0, ships.Length)].transform;
+            SetTarget (ships[UnityEngine.Random.Range(0, ships.Length)].transform);
         }
         else
         {
@@ -27,6 +30,12 @@ public class FollowCamera : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, RotSpeed * Time.fixedDeltaTime);
             transform.position = Vector3.Lerp(transform.position, targetPos, MoveSpeed * Time.fixedDeltaTime);
         }
+    }
+
+    public void SetTarget (Transform target)
+    {
+        Target = target;
+        OnTargetSwitch?.Invoke(Target);
     }
 
     void OnDrawGizmos()

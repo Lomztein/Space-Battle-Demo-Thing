@@ -51,12 +51,9 @@ public class AIControllerInput : MonoBehaviour, ITargeter
             float xAngle = Mathf.Rad2Deg * Mathf.Atan2(relative.x, relative.z);
             _controllable.Yaw(Mathf.Clamp(xAngle, -1, 1) * RotMultiplier, Time.fixedDeltaTime);
 
-            //_controllable.Roll(Mathf.Clamp(Mathf.DeltaAngle(transform.eulerAngles.z, Target.eulerAngles.z), -1, 1), Time.fixedDeltaTime);
-
             float angleToTarget = Vector3.Angle(transform.forward, _targetPosition - transform.position);
             if (angleToTarget < FireThreshold && dist < FireRange)
             {
-                //Debug.Log(Mathf.DeltaAngle(transform.eulerAngles.z, Target.eulerAngles.z));
                 _controllable.Roll(Mathf.DeltaAngle(transform.eulerAngles.z, Target.eulerAngles.z), Time.fixedDeltaTime);
                 _controllable.Primary();
             }
